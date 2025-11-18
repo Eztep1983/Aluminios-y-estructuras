@@ -1,3 +1,4 @@
+//pagina principal de la aplicacion
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -13,9 +14,9 @@ export default async function HomePage() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative h-[60vh] w-full text-white">
+      <section className="relative  w-full text-white">
         <Image
-          src={placeholderImagesById['hero-background']?.imageUrl || "https://picsum.photos/seed/hero/1920/1080"}
+          src={placeholderImagesById['hero-background']?.imageUrl || "https://res.cloudinary.com/dzqm5gmyg/image/upload/v1763506355/ESTRUCTURAS_bpletd.png"}
           alt={placeholderImagesById['hero-background']?.description || "Taller de aluminio"}
           data-ai-hint={placeholderImagesById['hero-background']?.imageHint || "aluminum workshop"}
           fill
@@ -24,6 +25,7 @@ export default async function HomePage() {
         />
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
+          <br />
           <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
             Aluminios y Estructuras
           </h1>
@@ -35,6 +37,7 @@ export default async function HomePage() {
               Ver Nuestros Proyectos <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
+          <br />
         </div>
       </section>
 

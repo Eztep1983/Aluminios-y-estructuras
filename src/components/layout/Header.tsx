@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, Wrench } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
@@ -21,7 +21,6 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
-          <Wrench className="h-6 w-6 text-primary" />
           <span className="font-bold font-headline sm:inline-block">
             Aluminios y Estructuras
           </span>
@@ -50,7 +49,6 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="left">
               <Link href="/" className="mr-6 flex items-center space-x-2 mb-8">
-                <Wrench className="h-6 w-6 text-primary" />
                 <span className="font-bold font-headline">Aluminios y Estructuras</span>
               </Link>
               <div className="flex flex-col space-y-4">

@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useOptimistic, useRef, useActionState } from "react";
-import { useFormStatus } from "react-dom";
+import { useEffect, useState, useRef } from "react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,62 +8,66 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { submitTestimonial } from "@/lib/actions";
+import { addTestimonial, subscribeToTestimonials } from "@/lib/firestore-testimonials";
 import type { Testimonial } from "@/lib/types";
 import { getInitials } from "@/lib/utils";
-import { Star } from "lucide-react";
+import { Star, Loader2 } from "lucide-react";
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending} className="w-full">
-      {pending ? "Enviando..." : "Enviar Testimonio"}
-    </Button>
-  );
-}
-
-function TestimonialForm({ onAddTestimonial }: { onAddTestimonial: (t: Testimonial) => void }) {
-  const initialState = { message: "", success: false };
-  const [state, dispatch] = useActionState(submitTestimonial, initialState);
+function TestimonialForm({ onSuccess }: { onSuccess: () => void }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
 
-  useEffect(() => {
-    if (state.message) {
-      if (state.success) {
-        toast({
-          title: "Éxito",
-          description: state.message,
-        });
-        formRef.current?.reset();
-        
-        // Optimistically add testimonial
-        const formData = new FormData(formRef.current!);
-        const newTestimonial: Testimonial = {
-          id: new Date().toISOString(),
-          name: formData.get("name") as string || 'Anónimo',
-          message: formData.get("message") as string,
-          createdAt: new Date().toISOString(),
-        };
-        onAddTestimonial(newTestimonial);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-      } else {
-        toast({
-          title: "Error",
-          description: state.message,
-          variant: "destructive",
-        });
-      }
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const message = formData.get("message") as string;
+
+    if (!message.trim()) {
+      toast({
+        title: "Error",
+        description: "Por favor escribe tu testimonio",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
     }
-  }, [state, toast, onAddTestimonial]);
+
+    const result = await addTestimonial(name, message);
+
+    if (result.success) {
+      toast({
+        title: "¡Éxito!",
+        description: "Tu testimonio ha sido enviado correctamente",
+      });
+      formRef.current?.reset();
+      onSuccess();
+    } else {
+      toast({
+        title: "Error",
+        description: result.error || "No se pudo enviar el testimonio",
+        variant: "destructive",
+      });
+    }
+
+    setIsSubmitting(false);
+  };
 
   return (
     <Card>
       <CardContent className="p-6">
-        <form ref={formRef} action={dispatch} className="space-y-4">
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
           <div>
             <Label htmlFor="name">Tu Nombre (Opcional)</Label>
-            <Input id="name" name="name" placeholder="Anónimo" />
+            <Input 
+              id="name" 
+              name="name" 
+              placeholder="Anónimo"
+              disabled={isSubmitting}
+            />
           </div>
           <div>
             <Label htmlFor="message">Tu Testimonio</Label>
@@ -74,12 +77,19 @@ function TestimonialForm({ onAddTestimonial }: { onAddTestimonial: (t: Testimoni
               placeholder="Comparte tu experiencia con nosotros..."
               required
               rows={4}
+              disabled={isSubmitting}
             />
-            {state.errors?.message && (
-              <p className="text-sm text-destructive mt-1">{state.errors.message}</p>
-            )}
           </div>
-          <SubmitButton />
+          <Button type="submit" disabled={isSubmitting} className="w-full">
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Enviando...
+              </>
+            ) : (
+              "Enviar Testimonio"
+            )}
+          </Button>
         </form>
       </CardContent>
     </Card>
@@ -92,7 +102,9 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       <CardContent className="flex flex-col justify-between h-full p-6">
         <div>
           <div className="flex text-yellow-400 mb-2">
-            {[...Array(5)].map((_, i) => <Star key={i} fill="currentColor" className="w-5 h-5"/>)}
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} fill="currentColor" className="w-5 h-5"/>
+            ))}
           </div>
           <p className="text-muted-foreground italic">"{testimonial.message}"</p>
         </div>
@@ -113,21 +125,48 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 }
 
 export function Testimonials({ initialTestimonials }: { initialTestimonials: Testimonial[] }) {
-  const [optimisticTestimonials, addOptimisticTestimonial] = useOptimistic(
-    initialTestimonials,
-    (state, newTestimonial: Testimonial) => [newTestimonial, ...state]
-  );
-  
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(initialTestimonials);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Suscribirse a cambios en tiempo real
+    const unsubscribe = subscribeToTestimonials((updatedTestimonials) => {
+      setTestimonials(updatedTestimonials);
+      setIsLoading(false);
+    });
+
+    // Cleanup al desmontar
+    return () => unsubscribe();
+  }, []);
+
+  const handleSuccess = () => {
+    // Opcional: scroll a los testimonios después de enviar
+    const testimonialsSection = document.getElementById('testimonials');
+    if (testimonialsSection) {
+      testimonialsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {optimisticTestimonials.slice(0, 4).map((testimonial) => (
-          <TestimonialCard key={testimonial.id} testimonial={testimonial} />
-        ))}
+        {isLoading ? (
+          <div className="col-span-full flex justify-center items-center py-12">
+            <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+          </div>
+        ) : testimonials.length === 0 ? (
+          <div className="col-span-full text-center py-12 text-muted-foreground">
+            <p>Sé el primero en dejar tu testimonio</p>
+          </div>
+        ) : (
+          testimonials.slice(0, 4).map((testimonial) => (
+            <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+          ))
+        )}
       </div>
       <div>
         <h3 className="font-headline text-2xl font-bold mb-4">Deja tu Opinión</h3>
-        <TestimonialForm onAddTestimonial={addOptimisticTestimonial} />
+        <TestimonialForm onSuccess={handleSuccess} />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Wrench, Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -7,7 +7,6 @@ export default function Footer() {
       <div className="container mx-auto grid grid-cols-1 gap-8 px-4 py-12 md:grid-cols-3 md:px-6">
         <div className="flex flex-col items-start">
           <Link href="/" className="flex items-center space-x-2 text-foreground">
-            <Wrench className="h-6 w-6 text-primary" />
             <span className="text-lg font-bold font-headline">Aluminios y Estructuras</span>
           </Link>
           <p className="mt-4 text-sm">
