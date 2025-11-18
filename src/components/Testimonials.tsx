@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useOptimistic, useRef } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useEffect, useOptimistic, useRef, useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -25,7 +25,7 @@ function SubmitButton() {
 
 function TestimonialForm({ onAddTestimonial }: { onAddTestimonial: (t: Testimonial) => void }) {
   const initialState = { message: "", success: false };
-  const [state, dispatch] = useFormState(submitTestimonial, initialState);
+  const [state, dispatch] = useActionState(submitTestimonial, initialState);
   const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
 
