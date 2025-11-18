@@ -1,3 +1,76 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A modern aluminum workshop.",
+      "imageUrl": "https://images.unsplash.com/photo-1697281679290-ad7be1b10682?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhbHVtaW51bSUyMHdvcmtzaG9wfGVufDB8fHx8MTc2MzUwMDk3N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "aluminum workshop"
+    },
+    {
+      "id": "puerta-1",
+      "description": "Elegant aluminum and glass door.",
+      "imageUrl": "https://images.unsplash.com/photo-1661260731406-05dd99109f77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhbHVtaW51bSUyMGRvb3J8ZW58MHx8fHwxNzYzNTAwOTc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "aluminum door"
+    },
+    {
+      "id": "porton-1",
+      "description": "Automatic electric gate for a residence.",
+      "imageUrl": "https://images.unsplash.com/photo-1736488517606-ff7b014c07a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxlbGVjdHJpYyUyMGdhdGV8ZW58MHx8fHwxNzYzNTAwOTc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "electric gate"
+    },
+    {
+      "id": "ventana-1",
+      "description": "Sliding aluminum window with a view.",
+      "imageUrl": "https://images.unsplash.com/photo-1614818382087-2a348d26db3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhbHVtaW51bSUyMHdpbmRvd3xlbnwwfHx8fDE3NjM1MDA5Nzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "aluminum window"
+    },
+    {
+      "id": "estructura-1",
+      "description": "Custom aluminum structure for a terrace.",
+      "imageUrl": "https://images.unsplash.com/photo-1616695183403-d3efb120f2c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhbHVtaW51bSUyMHN0cnVjdHVyZXxlbnwwfHx8fDE3NjM1MDA5Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "aluminum structure"
+    },
+    {
+      "id": "puerta-2",
+      "description": "Modern black aluminum front door.",
+      "imageUrl": "https://images.unsplash.com/photo-1571900993254-2bd600f70b77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibGFjayUyMGRvb3J8ZW58MHx8fHwxNzYzNTAwOTc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "black door"
+    },
+    {
+      "id": "porton-2",
+      "description": "Sleek industrial electric gate.",
+      "imageUrl": "https://images.unsplash.com/photo-1654541011165-6df8d21a575e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxpbmR1c3RyaWFsJTIwZ2F0ZXxlbnwwfHx8fDE3NjM1MDA5Nzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "industrial gate"
+    },
+    {
+      "id": "ventana-2",
+      "description": "Large panoramic aluminum windows for a living room.",
+      "imageUrl": "https://images.unsplash.com/photo-1564605503931-f7cd30c93c53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwYW5vcmFtaWMlMjB3aW5kb3d8ZW58MHx8fHwxNzYzNTAwOTc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "panoramic window"
+    },
+    {
+      "id": "puerta-3",
+      "description": "Interior aluminum door with frosted glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1603673298820-40d77252226d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxpbnRlcmlvciUyMGRvb3J8ZW58MHx8fHwxNzYzNTAwOTc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "interior door"
+    },
+    {
+      "id": "porton-3",
+      "description": "Wooden style aluminum electric gate.",
+      "imageUrl": "https://images.unsplash.com/photo-1693038897766-7648cf044bad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3b29kJTIwZ2F0ZXxlbnwwfHx8fDE3NjM1MDA5Nzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wood gate"
+    },
+    {
+      "id": "ventana-3",
+      "description": "Small aluminum bathroom window.",
+      "imageUrl": "https://images.unsplash.com/photo-1641480871576-12f1c232c1bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxiYXRocm9vbSUyMHdpbmRvd3xlbnwwfHx8fDE3NjM1MDA5Nzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "bathroom window"
+    },
+    {
+      "id": "estructura-2",
+      "description": "Aluminum roof structure for a carport.",
+      "imageUrl": "https://images.unsplash.com/photo-1532885297236-290e7dd12d8b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjYXJwb3J0JTIwcm9vZnxlbnwwfHx8fDE3NjM1MDA5Nzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "carport roof"
+    }
+  ]
 }
