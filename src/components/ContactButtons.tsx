@@ -11,8 +11,8 @@ import { useState } from "react";
 
 export default function ContactButtons() {
     const [isOpen, setIsOpen] = useState(false);
-    const phoneNumber = "5215512345678"; // Use country code format for WhatsApp
-    const whatsappMessage = "Hola, me gustaría solicitar una cotización.";
+    const phoneNumber = "573122180953"; 
+    const whatsappMessage = "Hola, me gustaría solicitar una cotización acerca de tu trabajo.";
 
     return (
         <Popover open={isOpen} onOpenChange={setIsOpen}>

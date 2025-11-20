@@ -165,7 +165,7 @@ export function Testimonials({ initialTestimonials }: { initialTestimonials: Tes
         )}
       </div>
       <div>
-        <h3 className="font-headline text-2xl font-bold mb-4">Deja tu Opinión</h3>
+        <h3 className="font-headline text-2xl font-bold mb-4">¿Fuiste Cliente? Deja tu Opinión</h3>
         <TestimonialForm onSuccess={handleSuccess} />
       </div>
     </div>
