@@ -1,25 +1,29 @@
+"use client";
+
 import Image from 'next/image';
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, X, Eye } from 'lucide-react';
-import type { Project } from '@/lib/types';
-import { placeholderImagesById } from '@/lib/placeholder-images';
+import { ChevronLeft, ChevronRight, Eye } from 'lucide-react';
 
 interface ProjectCardProps {
-  project: Project;
+  project: {
+    id: string;
+    name: string;
+    description: string;
+    category?: string;
+    galleryImages: string[];
+    createdAt?: Date;
+  };
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
-  const image = placeholderImagesById[project.image];
-  
-  // Array de URLs de Cloudinary para el proyecto
-  // Puedes modificar esto para que venga del objeto project
-  const projectImages = project.galleryImages || [image?.imageUrl];
+  // Usar las imágenes de galleryImages que vienen de Firebase
+  const projectImages = project.galleryImages || [];
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);
@@ -35,6 +39,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
     if (e.key === 'Escape') setIsModalOpen(false);
   };
 
+  // Si no hay imágenes, no renderizar nada
+  if (projectImages.length === 0) {
+    return null;
+  }
+
   return (
     <>
       <Card className="overflow-hidden transition-all hover:shadow-lg group cursor-pointer">
@@ -43,16 +52,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
             className="aspect-video overflow-hidden relative"
             onClick={() => setIsModalOpen(true)}
           >
-            {image && (
-              <Image
-                src={image.imageUrl}
-                alt={image.description}
-                data-ai-hint={image.imageHint}
-                width={600}
-                height={400}
-                className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-              />
-            )}
+            <Image
+              src={projectImages[0]}
+              alt={project.name}
+              width={600}
+              height={400}
+              className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+            />
+            
             {/* Overlay con botón "Ver" */}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
               <Button 
@@ -75,6 +82,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 {projectImages.length} fotos
               </div>
             )}
+
+            {/* Badge de categoría */}
+            {project.category && (
+              <div className="absolute top-3 left-3 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
+                {project.category}
+              </div>
+            )}
           </div>
         </CardHeader>
         <CardContent className="p-6">
@@ -92,7 +106,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <div className="relative">
             {/* Header del Modal */}
             <DialogHeader className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/80 to-transparent p-6 text-white">
-              <DialogTitle className="text-2xl font-headline">{project.name}</DialogTitle>
+              <div className="flex items-center gap-2 mb-2">
+                <DialogTitle className="text-2xl font-headline">{project.name}</DialogTitle>
+                {project.category && (
+                  <span className="bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
+                    {project.category}
+                  </span>
+                )}
+              </div>
               <DialogDescription className="text-gray-200">
                 {project.description}
               </DialogDescription>
@@ -142,7 +163,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             {/* Miniaturas */}
             {projectImages.length > 1 && (
               <div className="p-4 bg-background border-t">
-                <div className="flex gap-2 overflow-x-auto pb-2">
+                <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
                   {projectImages.map((img, index) => (
                     <button
                       key={index}
