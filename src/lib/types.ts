@@ -1,5 +1,6 @@
 export type Project = {
   id: string;
+  galleryImages?: string[]; // Array de URLs de Cloudinary
   name: string;
   description: string;
   image: string; // Corresponds to an ID in placeholder-images.json

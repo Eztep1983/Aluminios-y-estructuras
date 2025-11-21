@@ -28,7 +28,7 @@ export default async function HomePage() {
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="container mx-auto px-4 md:px-6">
               <div className="flex flex-col items-center text-center text-white space-y-6 max-w-4xl mx-auto">
-                <h1 className="font-headline text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight">
+                <h1 className="font-headline text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight border-black/20 pb-2">
                   Estructuras en Aluminio y Vidrio
                 </h1>
                 <p className="text-lg md:text-xl lg:text-2xl text-gray-100 max-w-2xl">
@@ -42,7 +42,7 @@ export default async function HomePage() {
                   </Button>
                   <Button asChild size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20">
                     <Link href="/contacto">
-                      Solicitar Cotización
+                      Contáctanos
                     </Link>
                   </Button>
                 </div>
@@ -68,7 +68,7 @@ export default async function HomePage() {
           </div>
           <ProjectCarousel projects={latestProjects} />
           <div className="mt-12 text-center">
-            <Button asChild variant="outline" size="lg" className="shadow-sm hover:shadow-md transition-shadow">
+            <Button asChild variant="outline" size="lg" className="shadow-sm bg-blue-200 hover:shadow-md transition-shadow">
               <Link href="/nuestro-trabajo">
                 Ver Todos los Proyectos <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -107,7 +107,7 @@ export default async function HomePage() {
             </p>
             <Button asChild size="lg" variant="secondary" className="shadow-lg hover:shadow-xl transition-all">
               <Link href="/contacto">
-                Solicitar Cotización
+                Contáctanos Ahora
               </Link>
             </Button>
           </div>

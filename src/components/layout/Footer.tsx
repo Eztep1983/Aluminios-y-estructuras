@@ -18,25 +18,25 @@ export default function Footer() {
           <ul className="mt-4 space-y-2 text-sm">
             <li className="flex items-center">
               <MapPin className="mr-2 h-4 w-4" />
-              <span>Av. de los Insurgentes Sur, Ciudad de México, CDMX</span>
+              <span>Calle 19 # 17b 22 Barrio Navarrete Pasto, Colombia</span>
             </li>
             <li className="flex items-center">
               <Mail className="mr-2 h-4 w-4" />
               <a href="mailto:contacto@aluminios.com" className="hover:text-primary">
-                contacto@aluminios.com
+                estructurasaluminiospasto@gmail.com
               </a>
             </li>
             <li className="flex items-center">
               <Phone className="mr-2 h-4 w-4" />
-              <a href="tel:+525512345678" className="hover:text-primary">
-                +52 55 1234 5678
+              <a href="tel:+573122180953" className="hover:text-primary">
+                +52 312 218 0953
               </a>
             </li>
           </ul>
         </div>
         <div className="overflow-hidden rounded-lg">
            <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.662423377708!2d-99.1756854850934!3d19.42698998688757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff35f5bd271f%3A0x47d956d7730999f8!2sThe%20Angel%20of%20Independence!5e0!3m2!1sen!2smx!4v1678886400000"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d997.2328130198376!2d-77.2754226!3d1.2082245!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e2ed5e57c008963%3A0x5179caf3f0b99bae!2sEstructuras%20y%20aluminios%20Pasto!5e0!3m2!1ses-419!2sco!4v1763761587518!5m2!1ses-419!2sco"
             width="100%"
             height="200"
             style={{ border: 0 }}
