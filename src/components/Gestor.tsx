@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { Upload, X, Check, Loader2, FileImage, Trash2, Plus, Save, Database } from 'lucide-react';
+import { X, Check, Loader2, FileImage, Trash2, Plus, Save, Database } from 'lucide-react';
 import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebaseConfig';
 

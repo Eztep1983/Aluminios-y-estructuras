@@ -1,7 +1,9 @@
+// src/app/page.tsx
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ProjectCarousel, ProjectCarouselWithData } from '@/components/ProjectCarousel';
+import { ProjectCarousel } from '@/components/ProjectCarousel';
 import { Testimonials } from '@/components/Testimonials';
 import { getLatestProjects, getTestimonials } from '@/lib/data';
 import { ArrowRight} from 'lucide-react';
@@ -16,8 +18,8 @@ export default async function HomePage() {
       <section className="relative w-full overflow-hidden">
         <div className="relative w-full h-[10vh] min-h-[400px] max-h-[700px]">
           <Image
-            src="https://res.cloudinary.com/dzqm5gmyg/image/upload/v1763677622/Portada1_pugn6j.jpg"
-            alt="Taller de aluminio"
+            src="https://res.cloudinary.com/dzqm5gmyg/image/upload/f_auto,q_auto/v1763677622/Portada1_pugn6j.jpg"
+            alt="Acabados en aluminio y vidrio en Pasto"
             fill
             className="object-cover brightness-75"
             priority

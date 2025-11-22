@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Eye } from 'lucide-react';
+import { optimizeCloudinaryUrl } from '@/lib/cloudinary'; 
 
 interface ProjectCardProps {
   project: {
@@ -82,7 +83,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             onClick={() => handleModalChange(true)}
           >
             <Image
-              src={projectImages[0]}
+              src={optimizeCloudinaryUrl(projectImages[0])}
               alt={project.name}
               width={600}
               height={400}
@@ -136,7 +137,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <div className="relative bg-black">
               <div className="relative w-full" style={{ maxHeight: '60vh' }}>
                 <Image
-                  src={projectImages[currentImageIndex]}
+                  src={optimizeCloudinaryUrl(projectImages[currentImageIndex])}
                   alt={`${project.name} - Imagen ${currentImageIndex + 1}`}
                   width={1200}
                   height={800}
@@ -206,7 +207,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                       }`}
                     >
                       <Image
-                        src={img}
+                        src={optimizeCloudinaryUrl(img)}
                         alt={`Miniatura ${index + 1}`}
                         width={80}
                         height={80}
