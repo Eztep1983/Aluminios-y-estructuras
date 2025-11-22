@@ -12,7 +12,7 @@ import { useState } from "react";
 export default function ContactButtons() {
     const [isOpen, setIsOpen] = useState(false);
     const phoneNumber = "573122180953"; 
-    const whatsappMessage = "Hola, me gustaría solicitar una cotización acerca de tu trabajo.";
+    const whatsappMessage = "Hola, estoy interesado en sus servicios de Aluminios y Estructuras ¿Podrían brindarme más información?";
 
     return (
         <Popover open={isOpen} onOpenChange={setIsOpen}>

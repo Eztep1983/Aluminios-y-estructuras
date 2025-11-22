@@ -268,7 +268,7 @@ export function CloudinaryProjectManager() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Gestor de Proyectos</h1>
+          <h1 className="text-3xl font-bold">Gestor de Proyectos del tio TALOS</h1>
           <p className="text-muted-foreground">
             Administra tus proyectos con Cloudinary y Firebase
           </p>
@@ -563,10 +563,7 @@ export function CloudinaryProjectManager() {
             <p><strong>2.</strong> Completa nombre, categoría y descripción</p>
             <p><strong>3.</strong> Agrega las imágenes del proyecto</p>
             <p><strong>4.</strong> Click en "Guardar Proyecto"</p>
-            <p><strong>5.</strong> Las imágenes se subirán a Cloudinary y el proyecto se guardará en Firebase automáticamente</p>
-            <p className="text-muted-foreground pt-2">
-              El proyecto quedará guardado en la colección "projects" con los campos: name, description, category, galleryImages y createdAt.
-            </p>
+            <p><strong>5.</strong> Las imágenes se subirán y el proyecto se guardará automáticamente</p>
           </CardContent>
         </Card>
       )}

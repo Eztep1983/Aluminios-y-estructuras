@@ -4,7 +4,7 @@ import { Phone, MessageCircle } from 'lucide-react';
 export default function ContactPage() {
   const phoneNumber = "+57 312 218 0953";
   const phone = "573122180953"; 
-  const whatsappMessage = "Hola, me gustaría solicitar una cotización acerca de tu trabajo.";
+  const whatsappMessage = "Hola, estoy interesado en sus servicios de Aluminios y Estructuras ¿Podrían brindarme más información?";
 
   
   return (

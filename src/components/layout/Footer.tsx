@@ -22,7 +22,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center">
               <Mail className="mr-2 h-4 w-4" />
-              <a href="mailto:contacto@aluminios.com" className="hover:text-primary">
+              <a href="mailto:estructurasaluminiospasto@gmail.com" className="hover:text-primary">
                 estructurasaluminiospasto@gmail.com
               </a>
             </li>
@@ -53,8 +53,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Aluminios y Estructuras. Todos los derechos reservados.
           </p>
           <div className="mt-2 flex space-x-4 sm:mt-0">
-            <Link href="#" className="text-sm hover:text-primary">Términos de Servicio</Link>
-            <Link href="#" className="text-sm hover:text-primary">Política de Privacidad</Link>
+            <Link href="Terminos" className="text-sm hover:text-primary">Términos de Servicio y Política de Privacidad</Link>
           </div>
         </div>
       </div>
