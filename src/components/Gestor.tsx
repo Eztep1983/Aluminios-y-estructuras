@@ -87,8 +87,8 @@ function LoginScreen() {
           <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
             <Shield className="w-6 h-6 text-primary" />
           </div>
-          <CardTitle className="text-2xl">Gestor de Proyectos</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-xl sm:text-2xl">Gestor de Proyectos</CardTitle>
+          <CardDescription className="text-sm">
             Inicia sesión con tu cuenta autorizada de Google
           </CardDescription>
         </CardHeader>
@@ -96,13 +96,12 @@ function LoginScreen() {
           <Button
             onClick={handleGoogleLogin}
             disabled={isLoading}
-            className="w-full"
-            size="lg"
+            className="w-full h-11 sm:h-12"
           >
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                Iniciando sesión...
+                <span className="text-sm sm:text-base">Iniciando sesión...</span>
               </>
             ) : (
               <>
@@ -124,7 +123,7 @@ function LoginScreen() {
                     d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                   />
                 </svg>
-                Continuar con Google
+                <span className="text-sm sm:text-base">Continuar con Google</span>
               </>
             )}
           </Button>
@@ -425,34 +424,34 @@ export function CloudinaryProjectManager() {
 
   // Gestor completo para usuarios autorizados
   return (
-    <div className="max-w-6xl mx-auto space-y-6 p-6">
+    <div className="w-full max-w-6xl mx-auto space-y-4 sm:space-y-6 p-3 sm:p-4 md:p-6">
       {/* Header con logout */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Gestor de Proyectos</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl sm:text-3xl font-bold">Gestor de Proyectos</h1>
+          <p className="text-sm text-muted-foreground mt-1">
             Administra tus proyectos con Cloudinary y Firebase
           </p>
         </div>
-        <div className="flex gap-2 items-center">
-          <div className="text-right mr-4">
-            <p className="text-sm font-medium">{user.displayName}</p>
-            <p className="text-xs text-muted-foreground">{user.email}</p>
+        <div className="flex flex-wrap gap-2 items-center">
+          <div className="hidden sm:block text-right mr-2 sm:mr-4">
+            <p className="text-xs sm:text-sm font-medium truncate max-w-[150px]">{user.displayName}</p>
+            <p className="text-xs text-muted-foreground truncate max-w-[150px]">{user.email}</p>
           </div>
-          <Button onClick={loadProjects} variant="outline" disabled={isLoadingProjects}>
+          <Button onClick={loadProjects} variant="outline" size="sm" className="h-9" disabled={isLoadingProjects}>
             {isLoadingProjects ? (
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
               <Database className="h-4 w-4" />
             )}
           </Button>
-          <Button onClick={createNewProject} size="lg">
-            <Plus className="mr-2 h-5 w-5" />
-            Nuevo Proyecto
+          <Button onClick={createNewProject} size="sm" className="h-9">
+            <Plus className="mr-1 sm:mr-2 h-4 w-4" />
+            <span className="text-sm">Nuevo</span>
           </Button>
-          <Button onClick={handleLogout} variant="outline" size="lg">
-            <LogOut className="mr-2 h-5 w-5" />
-            Salir
+          <Button onClick={handleLogout} variant="outline" size="sm" className="h-9">
+            <LogOut className="mr-1 sm:mr-2 h-4 w-4" />
+            <span className="text-sm">Salir</span>
           </Button>
         </div>
       </div>
@@ -460,9 +459,9 @@ export function CloudinaryProjectManager() {
       {/* Editor de proyecto actual */}
       {currentProject && (
         <Card className="border-2 border-primary">
-          <CardHeader>
-            <CardTitle className="flex items-center justify-between">
-              <span>
+          <CardHeader className="p-4 sm:p-6">
+            <CardTitle className="flex items-center justify-between text-base sm:text-lg">
+              <span className="truncate pr-2">
                 {currentProject.id ? `Editando: ${currentProject.name}` : 'Nuevo Proyecto'}
               </span>
               <Button
@@ -470,15 +469,16 @@ export function CloudinaryProjectManager() {
                 size="sm"
                 onClick={() => setCurrentProject(null)}
                 disabled={isUploading}
+                className="flex-shrink-0"
               >
                 <X className="w-4 h-4" />
               </Button>
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-4">
+          <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6">
+            <div className="space-y-3 sm:space-y-4">
               <div>
-                <Label htmlFor="projectName">Nombre del Proyecto *</Label>
+                <Label htmlFor="projectName" className="text-sm">Nombre del Proyecto *</Label>
                 <Input
                   id="projectName"
                   value={currentProject.name}
@@ -487,13 +487,13 @@ export function CloudinaryProjectManager() {
                     name: e.target.value
                   })}
                   placeholder="Ej: Casa Moderna en el Centro"
-                  className="mt-1.5"
+                  className="mt-1.5 h-10"
                   disabled={isUploading}
                 />
               </div>
 
               <div>
-                <Label htmlFor="projectCategory">Categoría</Label>
+                <Label htmlFor="projectCategory" className="text-sm">Categoría</Label>
                 <Input
                   id="projectCategory"
                   value={currentProject.category}
@@ -501,14 +501,14 @@ export function CloudinaryProjectManager() {
                     ...currentProject,
                     category: e.target.value
                   })}
-                  placeholder="Ej: Residencial, Comercial, Remodelación"
-                  className="mt-1.5"
+                  placeholder="Ej: Residencial, Comercial..."
+                  className="mt-1.5 h-10"
                   disabled={isUploading}
                 />
               </div>
 
               <div>
-                <Label htmlFor="projectDescription">Descripción *</Label>
+                <Label htmlFor="projectDescription" className="text-sm">Descripción *</Label>
                 <Textarea
                   id="projectDescription"
                   value={currentProject.description}
@@ -518,15 +518,15 @@ export function CloudinaryProjectManager() {
                   })}
                   placeholder="Describe el proyecto, materiales utilizados, características especiales..."
                   rows={4}
-                  className="mt-1.5"
+                  className="mt-1.5 text-sm"
                   disabled={isUploading}
                 />
               </div>
             </div>
 
-            <div className="space-y-4">
-              <Label>Imágenes del Proyecto *</Label>
-              <div className="border-2 border-dashed rounded-lg p-8 text-center hover:border-primary/50 transition-colors">
+            <div className="space-y-3 sm:space-y-4">
+              <Label className="text-sm">Imágenes del Proyecto *</Label>
+              <div className="border-2 border-dashed rounded-lg p-6 sm:p-8 text-center hover:border-primary/50 transition-colors">
                 <input
                   type="file"
                   accept="image/*"
@@ -537,18 +537,18 @@ export function CloudinaryProjectManager() {
                   disabled={isUploading}
                 />
                 <label htmlFor="file-upload-current" className={isUploading ? 'cursor-not-allowed' : 'cursor-pointer'}>
-                  <FileImage className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-                  <p className="text-lg font-medium mb-2">
+                  <FileImage className="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-muted-foreground mb-3 sm:mb-4" />
+                  <p className="text-base sm:text-lg font-medium mb-1 sm:mb-2">
                     Click para agregar imágenes
                   </p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     Puedes seleccionar múltiples archivos
                   </p>
                 </label>
               </div>
 
               {currentProject.images.length > 0 && (
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
                   {currentProject.images.map((image, index) => (
                     <div
                       key={index}
@@ -566,13 +566,13 @@ export function CloudinaryProjectManager() {
                         image.status === 'error' ? 'bg-red-500/20' : ''
                       }`}>
                         {image.status === 'uploading' && (
-                          <Loader2 className="w-8 h-8 text-white animate-spin" />
+                          <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 text-white animate-spin" />
                         )}
                         {image.status === 'success' && (
-                          <Check className="w-8 h-8 text-green-500" />
+                          <Check className="w-6 h-6 sm:w-8 sm:h-8 text-green-500" />
                         )}
                         {image.status === 'error' && (
-                          <X className="w-8 h-8 text-red-500" />
+                          <X className="w-6 h-6 sm:w-8 sm:h-8 text-red-500" />
                         )}
                       </div>
 
@@ -580,10 +580,10 @@ export function CloudinaryProjectManager() {
                         <Button
                           variant="destructive"
                           size="icon"
-                          className="absolute top-2 right-2 h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"
+                          className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 h-7 w-7 sm:h-8 sm:w-8 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
                           onClick={() => removeImage(index)}
                         >
-                          <X className="w-4 h-4" />
+                          <X className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         </Button>
                       )}
                     </div>
@@ -595,18 +595,19 @@ export function CloudinaryProjectManager() {
             <Button
               onClick={handleSaveProject}
               disabled={isUploading}
-              className="w-full"
-              size="lg"
+              className="w-full h-11 sm:h-12"
             >
               {isUploading ? (
                 <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  Subiendo a Cloudinary y guardando en Firebase...
+                  <Loader2 className="mr-2 h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
+                  <span className="text-sm sm:text-base">Subiendo...</span>
                 </>
               ) : (
                 <>
-                  <Save className="mr-2 h-5 w-5" />
-                  {currentProject.id ? 'Actualizar Proyecto' : 'Guardar Proyecto en Firebase'}
+                  <Save className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <span className="text-sm sm:text-base">
+                    {currentProject.id ? 'Actualizar Proyecto' : 'Guardar Proyecto'}
+                  </span>
                 </>
               )}
             </Button>
@@ -617,20 +618,22 @@ export function CloudinaryProjectManager() {
       {/* Lista de proyectos guardados */}
       {savedProjects.length > 0 && (
         <Card>
-          <CardHeader>
-            <CardTitle>Proyectos en Firebase ({savedProjects.length})</CardTitle>
-            <CardDescription>
+          <CardHeader className="p-4 sm:p-6">
+            <CardTitle className="text-base sm:text-lg">
+              Proyectos en Firebase ({savedProjects.length})
+            </CardTitle>
+            <CardDescription className="text-xs sm:text-sm">
               Proyectos almacenados en tu base de datos
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="p-4 sm:p-6">
+            <div className="space-y-3 sm:space-y-4">
               {savedProjects.map((project) => (
                 <Card key={project.id} className="overflow-hidden">
-                  <CardContent className="p-4">
-                    <div className="flex gap-4">
+                  <CardContent className="p-3 sm:p-4">
+                    <div className="flex gap-3 sm:gap-4">
                       {project.galleryImages[0] && (
-                        <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg overflow-hidden flex-shrink-0">
                           <img
                             src={project.galleryImages[0]}
                             alt={project.name}
@@ -640,27 +643,28 @@ export function CloudinaryProjectManager() {
                       )}
 
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-lg truncate">
+                        <h3 className="font-semibold text-sm sm:text-base md:text-lg truncate">
                           {project.name}
                         </h3>
                         {project.category && (
-                          <span className="inline-block bg-primary/10 text-primary px-2 py-1 rounded text-xs font-medium mt-1">
+                          <span className="inline-block bg-primary/10 text-primary px-2 py-0.5 sm:py-1 rounded text-xs font-medium mt-1">
                             {project.category}
                           </span>
                         )}
-                        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
+                        <p className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2 line-clamp-2">
                           {project.description}
                         </p>
-                        <p className="text-xs text-muted-foreground mt-2">
+                        <p className="text-xs text-muted-foreground mt-1 sm:mt-2">
                           {project.galleryImages.length} imágenes
                         </p>
                       </div>
 
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-1.5 sm:gap-2 flex-shrink-0">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => editProject(project)}
+                          className="h-8 px-2 sm:px-3 text-xs sm:text-sm"
                         >
                           Editar
                         </Button>
@@ -668,8 +672,9 @@ export function CloudinaryProjectManager() {
                           variant="destructive"
                           size="sm"
                           onClick={() => deleteProject(project.id, project.name)}
+                          className="h-8 w-8 sm:w-auto sm:px-3 p-0 sm:p-2"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         </Button>
                       </div>
                     </div>
@@ -683,10 +688,10 @@ export function CloudinaryProjectManager() {
 
       {savedProjects.length === 0 && !currentProject && (
         <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">📝 Cómo usar</CardTitle>
+          <CardHeader className="p-4 sm:p-6">
+            <CardTitle className="text-base sm:text-lg">📝 Cómo usar</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-sm">
+          <CardContent className="space-y-2 sm:space-y-3 text-xs sm:text-sm p-4 sm:p-6">
             <p><strong>1.</strong> Click en "Nuevo Proyecto"</p>
             <p><strong>2.</strong> Completa nombre, categoría y descripción</p>
             <p><strong>3.</strong> Agrega las imágenes del proyecto</p>

@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Eye } from 'lucide-react';
@@ -128,8 +128,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
           className="max-w-[95vw] sm:max-w-4xl w-full p-0 overflow-hidden max-h-[90vh] flex flex-col"
           onKeyDown={handleKeyDown}
         >
+          
           <VisuallyHidden>
             <DialogTitle>{project.name}</DialogTitle>
+                <DialogDescription>
+                  Galería de imágenes del proyecto {project.description}
+                </DialogDescription>
           </VisuallyHidden>
           
           <div className="flex flex-col overflow-y-auto">

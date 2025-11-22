@@ -32,7 +32,7 @@ export default function Header() {
         <Link href="/" className="mr-6 flex items-center">
           <div className="relative w-40 h-16"> 
             <Image
-              src="https://res.cloudinary.com/dzqm5gmyg/image/upload/v1763677935/Estructuras_Portada-removebg-preview_pzenux.png"
+              src="https://res.cloudinary.com/dzqm5gmyg/image/upload/f_auto,q_auto/v1763677935/Estructuras_Portada-removebg-preview_pzenux.png"
               alt="Estructuras y Aluminios - Portada"
               fill
               className="object-contain"
