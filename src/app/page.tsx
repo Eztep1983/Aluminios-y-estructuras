@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ProjectCarousel } from '@/components/ProjectCarousel';
+import { ProjectCarousel, ProjectCarouselWithData } from '@/components/ProjectCarousel';
 import { Testimonials } from '@/components/Testimonials';
 import { getLatestProjects, getTestimonials } from '@/lib/data';
 import { ArrowRight} from 'lucide-react';

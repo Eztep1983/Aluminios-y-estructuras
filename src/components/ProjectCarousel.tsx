@@ -15,28 +15,30 @@ import { Loader2, AlertCircle } from 'lucide-react';
 import Autoplay from "embla-carousel-autoplay";
 import type { CarouselApi } from '@/components/ui/carousel';
 
-interface FirebaseProject {
+export interface FirebaseProject {
   id: string;
   name: string;
   description: string;
   category?: string;
-  galleryImages: string[];
+  galleryImages?: string[];
   createdAt?: Date;
 }
 
 interface ProjectCarouselProps {
+  projects?: FirebaseProject[]; 
   autoplayDelay?: number;
   showDots?: boolean;
   maxProjects?: number;
 }
 
 export function ProjectCarousel({ 
+  projects: initialProjects, 
   autoplayDelay = 3000,
   showDots = true,
   maxProjects = 10
 }: ProjectCarouselProps) {
   const [projects, setProjects] = useState<FirebaseProject[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!initialProjects); 
   const [error, setError] = useState<string | null>(null);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -45,6 +47,12 @@ export function ProjectCarousel({
   const plugin = useRef(
     Autoplay({ delay: autoplayDelay, stopOnInteraction: true })
   );
+
+    useEffect(() => {
+    if (!initialProjects) {
+      loadProjects();
+    }
+  }, [maxProjects, initialProjects]);
 
   // Cargar proyectos desde Firebase
   useEffect(() => {

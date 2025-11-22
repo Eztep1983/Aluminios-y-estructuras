@@ -14,7 +14,7 @@ interface ProjectCardProps {
     name: string;
     description: string;
     category?: string;
-    galleryImages: string[];
+    galleryImages?: string[];
     createdAt?: Date;
   };
 }
@@ -24,6 +24,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   const projectImages = project.galleryImages || [];
+
 
   // Manejo del botón de back del navegador
   useEffect(() => {
