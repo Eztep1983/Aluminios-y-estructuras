@@ -11,7 +11,7 @@ import { useState } from "react";
 
 export default function ContactButtons() {
     const [isOpen, setIsOpen] = useState(false);
-    const phoneNumber = "573122180953"; 
+    const phoneNumber = "3122180953"; 
     const whatsappMessage = "Hola, estoy interesado en sus servicios de Aluminios y Estructuras ¿Podrían brindarme más información?";
 
     return (
@@ -26,12 +26,12 @@ export default function ContactButtons() {
             </PopoverTrigger>
             <PopoverContent className="w-auto p-2 border-none bg-transparent shadow-none" side="top" align="end">
                 <div className="flex flex-col items-end gap-3">
-                     <a 
-                        href={`tel:+${phoneNumber.replace('1', '')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2"
-                    >
+                            <a 
+                                href={`tel:${phoneNumber}`}  
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2"
+                            >
                          <p className="rounded-md bg-background px-3 py-2 text-sm font-medium shadow-md">Llamar ahora</p>
                         <Button
                             size="icon"

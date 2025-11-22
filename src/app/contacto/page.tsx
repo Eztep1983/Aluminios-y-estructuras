@@ -2,7 +2,7 @@ import React from 'react';
 import { Phone, MessageCircle } from 'lucide-react';
 
 export default function ContactPage() {
-  const phoneNumber = "+57 312 218 0953";
+  const phoneNumber = "312 218 0953";
   const phone = "573122180953"; 
   const whatsappMessage = "Hola, estoy interesado en sus servicios de Aluminios y Estructuras ¿Podrían brindarme más información?";
 
@@ -50,7 +50,7 @@ export default function ContactPage() {
 
           {/* Phone Card */}
           <a
-            href={`tel:${phoneNumber.replace(/\s/g, '')}`}
+            href={`tel:${phoneNumber}`}
             className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 border-2 border-transparent hover:border-blue-500 transform hover:-translate-y-2"
           >
             <div className="flex flex-col items-center text-center space-y-4">
