@@ -14,6 +14,7 @@ import { db, auth } from '@/lib/firebaseConfig';
 const AUTHORIZED_EMAILS = [
   'extep1983@gmail.com',
   'estructurasaluminiospasto@gmail.com',
+  'carlosmartinezcordoba1981@gmail.com',
 ];
 
 interface ProjectImage {
@@ -428,7 +429,7 @@ export function CloudinaryProjectManager() {
       {/* Header con logout */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold">Gestor de Proyectos</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">Gestor de Proyectos del Tío Talos</h1>
           <p className="text-sm text-muted-foreground mt-1">
             Administra tus proyectos con Cloudinary y Firebase
           </p>
